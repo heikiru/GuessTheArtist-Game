@@ -11,4 +11,4 @@ We are working on 3 branches for now.
     * Define a project pattern;
     * Build the GUI;
     * Create the .jar;
-   
+    * Needs to add the .gitignore file!
