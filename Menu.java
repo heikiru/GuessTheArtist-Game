@@ -8,67 +8,90 @@ import java.awt.GridLayout;
 
 import java.awt.GridBagConstraints;
 import java.awt.Component;
+
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.Box;
 
 
-//adaptando o antigo menu
+
 public class Menu extends JFrame{
 	
-	private GridBagLayout layout; // layout of this frame
+	private GridBagLayout layout;
 	private GridBagConstraints constraints;
-	private JButton button1, button2, button3, button4, button5, button6;
-	private JPanel panel1, panel2, panel3, panelText;
+	private JButton button1, button2, button3;
+	private JRadioButton[] pangramaButton;
+	private ButtonGroup pangramaGroup;
+	private JPanel panel1, panel2;
 	private JLabel label1, label2, label3;
 	private JTextArea textArea1, textArea2;
+	private String[] name = new String[10]; //names of the game objects 
+	private String[] question = new String[10]; //questions
+	private String[] guesses = new String[4]; //guesses
+	private Data data;
+	private ArrayList<GameObject> gameObject;
+	private boolean newGame= true;
+	private int i, j=0;
 	
 	
 		public Menu(){
+			
+			
+			
 			layout = new GridBagLayout();
 		    setLayout( layout ); 
 		    constraints = new GridBagConstraints();
-		    
 		    panel1 = new JPanel(new FlowLayout());
-		    button1 = new JButton("Artistas");
-		    button2 = new JButton("Álbuns");
+		    button1 = new JButton("Play");
+		 
 		    
 		    button1.addActionListener(
 					new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
+							
 							//apaguei o que existia no frame anterior
 							panel1.setVisible(false);
 							label1.setVisible(false);
 							
-							textArea1= new JTextArea();
-							label2 = new JLabel("dica");
-							panel2 = new JPanel(new FlowLayout());
+							gameObject= new ArrayList();
+							data = new Data();
+							gameObject= data.getObj();
 							
+							GameObject[] obj = new GameObject[10];
+							for(i=0; i<10; i++){
+							obj[i]= gameObject.get(i);
+							}
+								guesses= obj[j].getGuesses();					
+							
+							label2 = new JLabel(obj[j].getQuestion()); //***fix later (ajeitar as linhas)
+							panel2 = new JPanel(new FlowLayout());
 	
-							button3 = new JButton("OK");
-							button4 = new JButton("Voltar");
+							button2 = new JButton("OK");
+							button3 = new JButton("Voltar");
+							panel2.add(button2);
 							panel2.add(button3);
-							panel2.add(button4);
 							
 						
 							constraints.fill = GridBagConstraints.HORIZONTAL;
 							addComponent( panel2, 3, 0, 3, 1 );
 						
-							constraints.fill = GridBagConstraints.BOTH;
-							addComponent(textArea1, 1, 0, 3, 2);
 							
 							constraints.fill = GridBagConstraints.BOTH;
 							addComponent(label2, 0, 0, 3, 1);
 							
 							
-							button4.addActionListener(new ActionListener() {
+							button3.addActionListener(new ActionListener() {
 								@Override
 								public void actionPerformed(ActionEvent e) {
 									//apaguei o que existia no frame anterior
@@ -81,64 +104,19 @@ public class Menu extends JFrame{
 									}
 								}
 							);
-						
 							
-						}
+							}
+						
 					}
 				);
-			
-		    button2.addActionListener(
-		    		new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							//apaguei o que existia no frame anterior
-							panel1.setVisible(false);
-							label1.setVisible(false);						
-						
-							panel3 = new JPanel(new FlowLayout());
-			
-							textArea2= new JTextArea();
-							label3 = new JLabel("dica");
-							button5 = new JButton("OK");
-							button6 = new JButton("Voltar");
-							panel3.add(button5);
-							panel3.add(button6);
-							
-							constraints.fill = GridBagConstraints.HORIZONTAL;
-							addComponent(panel3, 3, 0, 3, 1);
-							
-							constraints.fill = GridBagConstraints.BOTH;
-							addComponent(textArea2, 1, 0, 3, 2);
-							
-							constraints.fill = GridBagConstraints.BOTH;
-							addComponent(label3, 0, 0, 3, 1);
-							
-							button6.addActionListener(new ActionListener() {
-								@Override
-								public void actionPerformed(ActionEvent e) {
-									//apaguei o que existia no frame anterior
-									panel3.setVisible(false);
-									textArea2.setVisible(false);
-									label3.setVisible(false);
-									panel1.setVisible(true);
-									label1.setVisible(true);
-									
-									}
-								}
-							);
-							
-						
-						}
-					}
-				);
+		
 		    
 		    panel1.add(button1);
-		    panel1.add(button2);
-		    
+		   
 		    constraints.fill = GridBagConstraints.HORIZONTAL;
 		    addComponent( panel1, 1, 0, 3, 1 );
 		    
-		    label1= new JLabel("Em qual categoria deseja jogar?");
+		    label1= new JLabel("Guess the Artist Game!");
 		    constraints.fill= GridBagConstraints.BOTH;
 		    addComponent(label1, 0, 0, 3, 1);
 		  
