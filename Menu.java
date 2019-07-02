@@ -30,8 +30,8 @@ public class Menu extends JFrame{
 	private GridBagLayout layout;
 	private GridBagConstraints constraints;
 	private JButton button1, button2, button3;
-	private JRadioButton[] pangramaButton;
-	private ButtonGroup pangramaGroup;
+	private JRadioButton[] guess; //JRadioButtons for the guesses, need to finish
+	private ButtonGroup guessGroup; 
 	private JPanel panel1, panel2;
 	private JLabel label1, label2, label3;
 	private JTextArea textArea1, textArea2;
