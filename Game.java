@@ -7,44 +7,27 @@ public class Game {
 	public GameObject obj;	// album, band
 	public int points;
 	
-		public Game(int points, GameObject obj, boolean correct, int initial_points) {
+		public Game(int points, GameObject obj, boolean correct) {
 			this.obj=obj;
 			this.points=points;
 			this.correct=correct;
 		    this.initial_points=0;
 		}
 		
-		public int Pontuacao(String guess) {
-			if(guess.equals(obj.getName())) {
+		public boolean Pontuacao(String answer, String guess) {
+			//checks answer with what the user selected
+			if(guess.equals(answer)) {
 				this.correct= true;
 			}else
-				this.initial_points++;
-				if(this.initial_points==3) {
-					this.correct=false;
+				this.correct= false;
+			//points:
+				if(correct==true) {
+					this.points+=300;
+				}else
+				if(correct==false) {
+					this.points+=0;
 				}
-			if(correct==true) {
-				this.points=300;
-			}else
-			if(correct==false) {
-				this.points=0;
-			}
-			return points;
-		}
-
-		public int getInitial_points() {
-			return initial_points;
-		}
-
-		public void setInitial_points(int initial_points) {
-			this.initial_points = initial_points;
-		}
-
-		public boolean isCorrect() {
-			return correct;
-		}
-
-		public void setCorrect(boolean correct) {
-			this.correct = correct;
+			return this.correct;
 		}
 
 		public GameObject getObj() {
