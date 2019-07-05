@@ -51,25 +51,35 @@ public class Menu extends JFrame{
 	public int j;
 	private ArrayList<String> lines = new ArrayList<>();
 	private boolean isCorrect;
+	private Color bgColor, btColor;
 	// private Serializer serial = new Serializer();
 	
 		// We will associate the music files we had downloaded before to our question array in order to 
 		// actually sync the music with the question. If the user got it right, we play the music.
 	
 		public Menu() {
+			
 
-			JFXPanel jfxPanel = new JFXPanel();
+//			JFXPanel jfxPanel = new JFXPanel();
 	
 			this.j=0;
 			this.score=0;
+			
+			bgColor= Color.white;
+			btColor= Color.PINK;
+			
 			game = new Game();
 			//initial menu
 			layout = new GridBagLayout();
 		    setLayout(layout); 
 		    constraints = new GridBagConstraints();
 		    panel1 = new JPanel(new FlowLayout());
+		    panel1.setBackground(bgColor);
 		    button1 = new JButton("Play");
+		    button1.setBackground(btColor);
 		 
+		    getContentPane().setBackground(bgColor);
+		    
 		    //play
 		    button1.addActionListener(
 					new ActionListener() {
@@ -101,6 +111,8 @@ public class Menu extends JFrame{
 							
 							panel2 = new JPanel(new FlowLayout());
 							
+							panel2.setBackground(bgColor);
+							
 							guessGroup= new ButtonGroup();
 						    radioButtonHandler= new RadioButtonHandler();
 						    guess = new JRadioButton[4];
@@ -109,12 +121,16 @@ public class Menu extends JFrame{
 						  	  guess[i] = new JRadioButton(guesses[i]);
 					    	  guess[i].setMaximumSize(new Dimension(95,25));
 					    	  guessGroup.add(guess[i]);
+					    	  guess[i].setBackground(bgColor);
 					    	  guess[i].addItemListener(radioButtonHandler);
 					    	  panel2.add(guess[i]);
 						  }
 							
+						  	
 							button2 = new JButton("OK");
+							button2.setBackground(btColor);
 							button3 = new JButton("Return");
+							button3.setBackground(btColor);
 							panel2.add(button2);
 							panel2.add(button3);
 						
@@ -136,6 +152,7 @@ public class Menu extends JFrame{
 										panel2.setVisible(false);
 
 										panel4 = new JPanel(new BorderLayout());
+										panel4.setBackground(bgColor);
 										textArea3= new JTextArea("Yay! You got it right :D");
 										textArea3.setEditable(false);
 										textArea3.setPreferredSize(new Dimension(160, 30));
@@ -150,6 +167,7 @@ public class Menu extends JFrame{
 //										
 										// button4 = new JButton("Yes");
 										button5 = new JButton("OK");
+										button5.setBackground(btColor);
 										panel4.add(textArea3, BorderLayout.SOUTH);
 										// panel4.add(button4);
 										panel4.add(button5, BorderLayout.NORTH);
@@ -196,7 +214,7 @@ public class Menu extends JFrame{
 										textArea1.setVisible(false);
 										panel2.setVisible(false);
 										panel3 = new JPanel(new BorderLayout());
-										
+										panel3.setBackground(bgColor);
 										
 										textArea2= new JTextArea("Oops, incorrect!");
 										textArea2.setEditable(false);
@@ -208,6 +226,7 @@ public class Menu extends JFrame{
 										
 										// button6 = new JButton("Yes");
 										button7 = new JButton("Ok");
+										button7.setBackground(btColor);
 										// panel3.add(button6);
 										panel3.add(button7, BorderLayout.SOUTH);
 										panel3.add(textArea2, BorderLayout.NORTH);
@@ -273,6 +292,7 @@ public class Menu extends JFrame{
 		    constraints.fill= GridBagConstraints.BOTH;
 		    addComponent(label1, 0, 0, 3, 1);
 			 System.out.println(score);
+			
 			 
 		}
 
@@ -316,4 +336,9 @@ public class Menu extends JFrame{
 	} // end main
 
 
+
+	public char[] getPoints() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
