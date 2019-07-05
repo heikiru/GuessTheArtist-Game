@@ -1,6 +1,3 @@
-//O J++ NAO CONTABILIZA POR SE TORNAR UMA VARIAVEL ESPECIFICA DE CADA BUTTON (RESOLVER)
-//MESMO MOTIVO CASO EXISTA UM WHILE, ELE VAI SER PARA SEMPRE INIFINITO E JOGO NÃO RODA, PORÉM ACREDITO QUE NÃO HAVERÁ NECESSIDADE DE WHILE***
-//as textareas ainda são editáveis e precisamos mudar o tamanho
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -87,7 +84,7 @@ public class Menu extends JFrame{
 							data = new Data();
 							gameObject= data.getObj();
 						
-							GameObject[] obj = new GameObject[10];
+							final GameObject[] obj = new GameObject[10];
 							for(i=0; i<10; i++){
 							obj[i]= gameObject.get(i);
 							}
@@ -132,30 +129,30 @@ public class Menu extends JFrame{
 								@Override
 								public void actionPerformed(ActionEvent e) {
 									obj[Menu.this.j].getName();
-									isCorrect= game.Pontuacao(obj[Menu.this.j].getName(),selected);
+									isCorrect= game.Pontuacao(obj[Menu.this.j].getName(), selected);
 									if(isCorrect==true) {
 										//ACERTOU
 										textArea1.setVisible(false);
 										panel2.setVisible(false);
 
-										panel4 = new JPanel();
-										textArea3= new JTextArea("Yay! You got it right :D\nDo you wish to continue playing?");
+										panel4 = new JPanel(new BorderLayout());
+										textArea3= new JTextArea("Yay! You got it right :D");
 										textArea3.setEditable(false);
-										textArea3.setPreferredSize(new Dimension(100, 50));
+										textArea3.setPreferredSize(new Dimension(160, 30));
 										textArea3.setLineWrap(true);
 										textArea3.setOpaque(false);
 										textArea3.setBorder(BorderFactory.createEmptyBorder());
 										textArea3.setFont(UIManager.getFont("Label.font"));
-
-										Serializer serial = new Serializer();
-										serial.addRecord(Menu.this);
-										serial.closeFile();
-										
+//
+//										Serializer serial = new Serializer();
+//										serial.addRecord(Menu.this);
+//										serial.closeFile();
+//										
 										// button4 = new JButton("Yes");
-										button5 = new JButton("Yes");
+										button5 = new JButton("OK");
 										panel4.add(textArea3, BorderLayout.SOUTH);
 										// panel4.add(button4);
-										panel4.add(button5);
+										panel4.add(button5, BorderLayout.NORTH);
 									    
 										//continue playing
 									    // button4.addActionListener(
@@ -198,20 +195,22 @@ public class Menu extends JFrame{
 										//ERROU
 										textArea1.setVisible(false);
 										panel2.setVisible(false);
-										panel3 = new JPanel();
+										panel3 = new JPanel(new BorderLayout());
 										
-										textArea2= new JTextArea("Oops, incorrect!\n Do you wish to continue playing?");
+										
+										textArea2= new JTextArea("Oops, incorrect!");
 										textArea2.setEditable(false);
-										textArea2.setPreferredSize(new Dimension(110, 90));
+										textArea2.setPreferredSize(new Dimension(160, 30));
 										textArea2.setLineWrap(true);
 										textArea2.setOpaque(false);
 										textArea2.setBorder(BorderFactory.createEmptyBorder());
 										textArea2.setFont(UIManager.getFont("Label.font"));
 										
 										// button6 = new JButton("Yes");
-										button7 = new JButton("Yes");
+										button7 = new JButton("Ok");
 										// panel3.add(button6);
-										panel3.add(button7);
+										panel3.add(button7, BorderLayout.SOUTH);
+										panel3.add(textArea2, BorderLayout.NORTH);
 									    
 										
 										//continue playing
@@ -241,8 +240,8 @@ public class Menu extends JFrame{
 												}
 											);
 										
-										addComponent(panel3, 3, 0, 1, 2 );
-										addComponent(textArea2, 0, 0, 2, 2 );
+										addComponent(panel3, 0, 0, 2, 2 );
+										
 									}	
 								}
 							}
@@ -315,4 +314,6 @@ public class Menu extends JFrame{
 		menu.setSize( 600, 300 ); // set frame size
 		menu.setVisible( true ); // display frame
 	} // end main
+
+
 }
