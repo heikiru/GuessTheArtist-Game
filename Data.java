@@ -1,4 +1,3 @@
-package jogo;
 import java.util.ArrayList;
 
 public class Data {
@@ -63,7 +62,7 @@ public class Data {
 				object[3] = new GameObject(name[3], question[3], guesses4);	
 					
 			name[4]="Aurora";
-				question[4]="She is a Norwegian singer-songwriter and producer. Her debut EP Running with the Wolves was released through Decca Records in May 2015, receiving widespread approval from online music blogs and national press";
+				question[4]="She is a Norwegian singer-songwriter and producer. Her debut EP Running with the Wolves was released through Decca Records in May 2015, receiving widespread approval from online music blogs and national press.";
 					guesses5[0]="Dua Lipa";
 					guesses5[1]="Aurora";
 					guesses5[2]="Sia";
@@ -72,7 +71,7 @@ public class Data {
 				object[4] = new GameObject(name[4], question[4], guesses5);	
 					
 			name[5]="Tyler, the creator";
-				question[5]="";
+				question[5]="Made an album named Flower Boy.";
 					guesses6[0]="Frank Ocean";
 					guesses6[1]="Kevin Abstract";
 					guesses6[2]="Tyler, the Creator";
@@ -81,7 +80,7 @@ public class Data {
 				object[5] = new GameObject(name[5], question[5], guesses6);	
 					
 			name[6]="Arctic Monkeys";
-				question[0]="";
+				question[0]="There's a storm named after one of its songs.";
 					guesses7[0]="Arctic Monkeys";
 					guesses7[1]="The Strokes";
 					guesses7[2]="Cage the Elephant";
