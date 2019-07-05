@@ -1,4 +1,4 @@
-
+package jogo;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import javafx.embed.swing.*;
