@@ -4,6 +4,7 @@
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import javafx.embed.swing.*;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
@@ -47,7 +48,7 @@ public class Menu extends JFrame{
 	private String selected;
 	private Data data;
 	private Game game;
-	private int points;
+	private int score;
 	private ArrayList<GameObject> gameObject;
 	private int i;
 	public int j;
@@ -59,9 +60,11 @@ public class Menu extends JFrame{
 		// actually sync the music with the question. If the user got it right, we play the music.
 	
 		public Menu() {
+
+			JFXPanel jfxPanel = new JFXPanel();
 	
 			this.j=0;
-			this.points=0;
+			this.score=0;
 			game = new Game();
 			//initial menu
 			layout = new GridBagLayout();
@@ -80,7 +83,7 @@ public class Menu extends JFrame{
 							panel1.setVisible(false);
 							label1.setVisible(false);
 							
-							gameObject= new ArrayList();
+							gameObject= new ArrayList<>();
 							data = new Data();
 							gameObject= data.getObj();
 						
@@ -143,7 +146,10 @@ public class Menu extends JFrame{
 										textArea3.setOpaque(false);
 										textArea3.setBorder(BorderFactory.createEmptyBorder());
 										textArea3.setFont(UIManager.getFont("Label.font"));
-										
+
+										Serializer serial = new Serializer();
+										serial.addRecord(Menu.this);
+										serial.closeFile();
 										
 										// button4 = new JButton("Yes");
 										button5 = new JButton("Yes");
@@ -173,7 +179,7 @@ public class Menu extends JFrame{
 													public void actionPerformed(ActionEvent e) {
 														panel4.setVisible(false);
 														textArea3.setVisible(false);
-														Menu.this.points++;
+														Menu.this.score++;
 														Menu.this.j++;
 														panel1.setVisible(true);
 														label1.setVisible(true);
@@ -267,17 +273,11 @@ public class Menu extends JFrame{
 		    label1= new JLabel("Guess the Artist Game!");
 		    constraints.fill= GridBagConstraints.BOTH;
 		    addComponent(label1, 0, 0, 3, 1);
-			 System.out.println(points);
+			 System.out.println(score);
 			 
 		}
 
-		public void setPoints(){
-				this.points = points;
-		}
-
-		public int getPoints(){
-			return points;
-		}
+		
 	
 		private void addComponent( Component component,
 				int row, int column, int width, int height )
@@ -297,13 +297,21 @@ public class Menu extends JFrame{
 					if(guess[a].isSelected()){
 						selected= guesses[a];
 					}
-					}
+				}
 			}
+		}
+
+	public void setScore(int p){
+		this.score = p;
+	}
+
+	public int getScore(){
+		return this.score;
 	}
 	
 	public static void main(String[] args){
 		Menu menu = new Menu(); 
-		menu.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+		menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		menu.setSize( 600, 300 ); // set frame size
 		menu.setVisible( true ); // display frame
 	} // end main
