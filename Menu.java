@@ -1,9 +1,7 @@
-package jogo;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import javafx.embed.swing.*;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -15,17 +13,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
-import javax.swing.Box;
+
 
 public class Menu extends JFrame{
 	
