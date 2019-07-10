@@ -1,17 +1,16 @@
-package jogo;
+
 
 public class Game {
 
-	public int initial_points;
 	public boolean correct;
-	public GameObject obj;	// album, band
 	public int points;
 	
-		public Game(int points, GameObject obj, boolean correct) {
-			this.obj=obj;
+	public Game() {
+		
+	}
+		public Game(int points, boolean correct) {
 			this.points=points;
 			this.correct=correct;
-		    this.initial_points=0;
 		}
 		
 		public boolean Pontuacao(String answer, String guess) {
@@ -30,13 +29,6 @@ public class Game {
 			return this.correct;
 		}
 
-		public GameObject getObj() {
-			return obj;
-		}
-
-		public void setGameObject(GameObject obj) {
-			this.obj = obj;
-		}
 
 		public int getPoints() {
 			return points;
